@@ -1,0 +1,13 @@
+# Core UI
+streamlit
+
+# Maths & data
+numpy
+pandas
+matplotlib
+
+# Excel export
+xlsxwriter
+
+# Dev & tests
+pytest
