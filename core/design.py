@@ -14,29 +14,63 @@
 from __future__ import annotations
 from typing import Tuple, Dict
 
-from .models import (
-    DesignInput,
-    DesignResult,
-    ModeResult,
-    DesignMode,
-    LoadModel,
-)
-from .loads import (
-    block_weight_pyramid,
-    block_weight_flat,
-    block_weight_shale,
-    uniform_load_from_block,
-)
-from .capacities import (
-    capacity_adhesion,
-    flexure_demands_uniform_load,
-    capacity_flexure_two_way,
-    punching_demand,
-    capacity_punching,
-    capacity_direct_shear,
-    evaluate_fos,
-    evaluate_lrfd,
-)
+# When imported as part of the ``core`` package the relative imports below work
+# as intended.  However, running ``design.py`` as a standalone script (or from
+# interactive environments where ``core`` isn't a recognised package) raises
+# ``ImportError: attempted relative import with no known parent package``.
+#
+# To keep the module convenient for both package and script usage we try the
+# relative imports first and fall back to plain imports if they fail.  This
+# mirrors the layout of the repository where ``design.py`` lives alongside the
+# sibling modules it depends on.
+try:  # pragma: no cover - exercised only when run as a script
+    from .models import (
+        DesignInput,
+        DesignResult,
+        ModeResult,
+        DesignMode,
+        LoadModel,
+    )
+    from .loads import (
+        block_weight_pyramid,
+        block_weight_flat,
+        block_weight_shale,
+        uniform_load_from_block,
+    )
+    from .capacities import (
+        capacity_adhesion,
+        flexure_demands_uniform_load,
+        capacity_flexure_two_way,
+        punching_demand,
+        capacity_punching,
+        capacity_direct_shear,
+        evaluate_fos,
+        evaluate_lrfd,
+    )
+except ImportError:  # pragma: no cover - fallback for script execution
+    from models import (
+        DesignInput,
+        DesignResult,
+        ModeResult,
+        DesignMode,
+        LoadModel,
+    )
+    from loads import (
+        block_weight_pyramid,
+        block_weight_flat,
+        block_weight_shale,
+        uniform_load_from_block,
+    )
+    from capacities import (
+        capacity_adhesion,
+        flexure_demands_uniform_load,
+        capacity_flexure_two_way,
+        punching_demand,
+        capacity_punching,
+        capacity_direct_shear,
+        evaluate_fos,
+        evaluate_lrfd,
+    )
 
 
 # -----------------------------
